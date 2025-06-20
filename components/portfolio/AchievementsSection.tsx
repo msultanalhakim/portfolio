@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Award, BadgeIcon as Certificate, Eye, ChevronLeft, ChevronRight } from "lucide-react"
 import { achievements, type AchievementType } from "./data"
-import { useState } from "react"
+import { useState, useEffect } from "react" // useEffect ditambahkan untuk best practice
 
 interface AchievementsSectionProps {
   onAchievementClick: (achievement: AchievementType) => void
@@ -16,24 +16,26 @@ interface AchievementsSectionProps {
 export function AchievementsSection({ onAchievementClick }: AchievementsSectionProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  // Desktop: 2 items per page, Mobile: 1 item per page
+  // Fungsi untuk mendapatkan item per halaman berdasarkan lebar layar
   const getItemsPerPage = () => {
     if (typeof window !== "undefined") {
       return window.innerWidth >= 768 ? 2 : 1
     }
-    return 2 // Default for SSR
+    return 2 // Default untuk Server-Side Rendering (SSR)
   }
 
   const [itemsPerPage, setItemsPerPage] = useState(getItemsPerPage())
   const totalPages = Math.ceil(achievements.length / itemsPerPage)
 
-  // Update items per page on window resize
-  useState(() => {
+  // Mengupdate item per halaman saat ukuran jendela berubah
+  useEffect(() => {
+    // Pastikan kode ini hanya berjalan di sisi client
     if (typeof window !== "undefined") {
       const handleResize = () => {
         const newItemsPerPage = window.innerWidth >= 768 ? 2 : 1
         setItemsPerPage(newItemsPerPage)
-        // Reset to first page if current page would be out of bounds
+        
+        // Reset ke halaman pertama jika halaman saat ini di luar batas
         const newTotalPages = Math.ceil(achievements.length / newItemsPerPage)
         if (currentIndex >= newTotalPages) {
           setCurrentIndex(0)
@@ -41,41 +43,39 @@ export function AchievementsSection({ onAchievementClick }: AchievementsSectionP
       }
 
       window.addEventListener("resize", handleResize)
+      // Membersihkan event listener saat komponen di-unmount
       return () => window.removeEventListener("resize", handleResize)
     }
-  })
+  }, [currentIndex]) // Tambahkan dependency array
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % Math.ceil(achievements.length / itemsPerPage))
+    setCurrentIndex((prev) => (prev + 1) % totalPages)
   }
 
   const prevSlide = () => {
-    setCurrentIndex(
-      (prev) =>
-        (prev - 1 + Math.ceil(achievements.length / itemsPerPage)) % Math.ceil(achievements.length / itemsPerPage),
-    )
+    setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages)
   }
 
   return (
-    <section id="achievements" className="py-32 px-6">
+    <section id="achievements" className="pt-28 pb-12 px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-6"
         >
           <h2 className="text-5xl lg:text-7xl font-black mb-6 bg-gradient-to-r from-rose-400 via-pink-500 to-rose-500 bg-clip-text text-transparent">
-            Recognition & Achievements
+            Awards & Certifications
           </h2>
           <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
-            Professional certifications and industry recognition for excellence in technology
+          A collection of awards and certifications that demonstrate proven excellence and mastery in the tech industry.
           </p>
         </motion.div>
 
         <div className="relative">
-          {/* Navigation Buttons - Positioned at sides */}
+          {/* Tombol Navigasi - Diposisikan di sisi */}
           <Button
             variant="outline"
             size="icon"
@@ -95,14 +95,14 @@ export function AchievementsSection({ onAchievementClick }: AchievementsSectionP
           </Button>
 
           {/* Slideshow Container */}
-          <div className="overflow-hidden rounded-3xl mx-16">
+          <div className="overflow-hidden rounded-3xl mx-12">
             <motion.div
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
-              {Array.from({ length: Math.ceil(achievements.length / itemsPerPage) }).map((_, pageIndex) => (
-                <div key={pageIndex} className="w-full flex-shrink-0">
-                  <div className={`grid ${itemsPerPage === 2 ? "md:grid-cols-2" : "grid-cols-1"} gap-8 px-4`}>
+              {Array.from({ length: totalPages }).map((_, pageIndex) => (
+                <div key={pageIndex} className="w-full flex-shrink-0 p-8">
+                  <div className={`grid ${itemsPerPage === 2 ? "md:grid-cols-2" : "grid-cols-1"} gap-8`}>
                     {achievements
                       .slice(pageIndex * itemsPerPage, (pageIndex + 1) * itemsPerPage)
                       .map((achievement, index) => (
@@ -112,7 +112,7 @@ export function AchievementsSection({ onAchievementClick }: AchievementsSectionP
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: index * 0.2, duration: 0.8 }}
-                          className="group bg-white/70 dark:bg-slate-800/70 backdrop-blur-xl rounded-3xl overflow-hidden border border-white/30 dark:border-slate-700/30 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] cursor-pointer"
+                          className="group bg-white/70 dark:bg-slate-800/70 backdrop-blur-xl rounded-3xl overflow-hidden border border-white/30 dark:border-slate-700/30 shadow-lg hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] cursor-pointer"
                           onClick={() => onAchievementClick(achievement)}
                         >
                           <div className="relative h-48">
@@ -165,9 +165,9 @@ export function AchievementsSection({ onAchievementClick }: AchievementsSectionP
             </motion.div>
           </div>
 
-          {/* Pagination Dots */}
-          <div className="flex justify-center gap-2 mt-8">
-            {Array.from({ length: Math.ceil(achievements.length / itemsPerPage) }).map((_, index) => (
+          {/* Titik Paginasi */}
+          <div className="flex justify-center gap-2">
+            {Array.from({ length: totalPages }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}

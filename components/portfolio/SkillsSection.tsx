@@ -3,55 +3,57 @@
 import { motion } from "framer-motion"
 import { useState, useMemo } from "react"
 import { Button } from "@/components/ui/button"
-import { Code, Palette, Server, Database, Cloud, Smartphone } from "lucide-react"
+import { Code2, Settings2, BrainCircuit, Brain, BarChart } from "lucide-react"
 
-const skillCategories = [
+export const skillCategories = [
   {
-    name: "Frontend",
-    icon: <Code className="w-5 h-5" />,
-    color: "from-rose-400 to-pink-500",
+    name: "Programming",
+    icon: <Code2 className="w-5 h-5" />,
+    color: "from-blue-500 to-yellow-500",
   },
   {
-    name: "Design",
-    icon: <Palette className="w-5 h-5" />,
-    color: "from-pink-400 to-rose-500",
+    name: "ML Library",
+    icon: <Settings2 className="w-5 h-5" />,
+    color: "from-green-500 to-emerald-600",
   },
   {
-    name: "Backend",
-    icon: <Server className="w-5 h-5" />,
-    color: "from-rose-500 to-pink-600",
+    name: "DL Framework",
+    icon: <BrainCircuit className="w-5 h-5" />,
+    color: "from-pink-500 to-red-600",
   },
   {
-    name: "Database",
-    icon: <Database className="w-5 h-5" />,
-    color: "from-pink-500 to-rose-600",
-  },
-  {
-    name: "Cloud",
-    icon: <Cloud className="w-5 h-5" />,
-    color: "from-rose-600 to-pink-700",
-  },
-  {
-    name: "Mobile",
-    icon: <Smartphone className="w-5 h-5" />,
-    color: "from-pink-600 to-rose-700",
+    name: "Visualization",
+    icon: <BarChart className="w-5 h-5" />,
+    color: "from-purple-500 to-violet-600",
   },
 ]
 
-const optimizedSkills = [
-  { name: "React", category: "Frontend", icon: "⚛️", description: "Advanced component architecture and hooks" },
-  { name: "TypeScript", category: "Frontend", icon: "🔷", description: "Type-safe development patterns" },
-  { name: "Next.js", category: "Frontend", icon: "▲", description: "Full-stack React framework" },
-  { name: "Tailwind CSS", category: "Design", icon: "🎨", description: "Utility-first CSS framework" },
-  { name: "Node.js", category: "Backend", icon: "🟢", description: "Server-side JavaScript runtime" },
-  { name: "Python", category: "Backend", icon: "🐍", description: "Backend development and automation" },
-  { name: "PostgreSQL", category: "Database", icon: "🐘", description: "Relational database management" },
-  { name: "MongoDB", category: "Database", icon: "🍃", description: "NoSQL document database" },
-  { name: "AWS", category: "Cloud", icon: "☁️", description: "Cloud infrastructure and services" },
-  { name: "Docker", category: "Cloud", icon: "🐳", description: "Containerization and deployment" },
-  { name: "React Native", category: "Mobile", icon: "📱", description: "Cross-platform mobile development" },
-  { name: "GraphQL", category: "Backend", icon: "🔗", description: "API query language and runtime" },
-]
+export const optimizedSkills = [
+  // Programming Languages
+  { name: "Python", category: "Programming", icon: "🐍", description: "Primary language for data science and machine learning" },
+  { name: "R", category: "Programming", icon: "📊", description: "Statistical computing and data visualization" },
+  { name: "SQL", category: "Programming", icon: "🗃️", description: "Structured data querying and manipulation" },
+
+  // Core ML & AI Libraries
+  { name: "NumPy", category: "ML Library", icon: "📐", description: "Numerical operations and linear algebra" },
+  { name: "Pandas", category: "ML Library", icon: "🧮", description: "Data manipulation and preprocessing" },
+  { name: "Scikit-learn", category: "ML Library", icon: "🤖", description: "Essential ML algorithms and pipelines" },
+  { name: "XGBoost", category: "ML Library", icon: "🚀", description: "Gradient boosting for structured data" },
+  { name: "LightGBM", category: "ML Library", icon: "💡", description: "Fast, efficient boosting for large datasets" },
+  { name: "Optuna", category: "ML Library", icon: "🎯", description: "Hyperparameter tuning framework" },
+
+  // Deep Learning
+  { name: "TensorFlow", category: "DL Framework", icon: "🔬", description: "Scalable platform for deep learning" },
+  { name: "Keras", category: "DL Framework", icon: "🧠", description: "High-level neural network API" },
+  { name: "PyTorch", category: "DL Framework", icon: "🔥", description: "Dynamic and flexible deep learning library" },
+
+  // Visualization (optional but helpful)
+  { name: "Matplotlib", category: "Visualization", icon: "📈", description: "Basic plotting for data exploration" },
+  { name: "Seaborn", category: "Visualization", icon: "🌊", description: "Statistical plotting built on Matplotlib" }
+];
+
+
+
 
 export function SkillsSection() {
   const [selectedCategory, setSelectedCategory] = useState("All")
@@ -65,7 +67,7 @@ export function SkillsSection() {
   )
 
   return (
-    <section id="skills" className="py-32 px-6 relative overflow-hidden">
+    <section id="skills" className="pt-32 pb-18 px-6 relative">
       {/* Optimized Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none will-change-transform">
         <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-rose-400/8 to-pink-500/8 rounded-full blur-3xl" />
@@ -78,9 +80,9 @@ export function SkillsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
-          <h2 className="text-5xl lg:text-7xl font-black mb-6 bg-gradient-to-r from-rose-400 via-pink-500 to-rose-500 bg-clip-text text-transparent pb-4">
+          <h2 className="text-5xl lg:text-7xl font-black mb-6 bg-gradient-to-r from-rose-400 via-pink-500 to-rose-500 bg-clip-text text-transparent p-4">
             Skills & Technologies
           </h2>
           <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed mb-8">
@@ -132,7 +134,7 @@ export function SkillsSection() {
               className="group relative bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-6 border border-rose-200/30 dark:border-rose-700/30 shadow-xl hover:shadow-2xl hover:shadow-rose-500/20 transition-all duration-300 cursor-pointer overflow-hidden will-change-transform"
             >
               {/* Optimized background gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-rose-400/15 via-pink-500/15 to-rose-500/15 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-rose-400/40 dark:group-hover:border-rose-500/60 transition-colors duration-300 pointer-events-none" />
 
               {/* Skill Content */}
               <div className="relative z-10">
@@ -141,14 +143,14 @@ export function SkillsSection() {
                     {skill.icon}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-lg text-slate-800 dark:text-slate-100 group-hover:text-white transition-colors duration-200 break-words">
+                    <h3 className="font-bold text-lg text-slate-800 dark:text-slate-100 group-hover:text-rose-600 dark:group-hover:text-white transition-colors duration-200 break-words">
                       {skill.name}
                     </h3>
                     <p className="text-sm text-rose-500 dark:text-rose-400 font-medium">{skill.category}</p>
                   </div>
                 </div>
 
-                <p className="text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-200 leading-relaxed transition-colors duration-200 break-words">
+                <p className="text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-800 dark:group-hover:text-slate-200 leading-relaxed transition-colors duration-200 break-words">
                   {skill.description}
                 </p>
               </div>

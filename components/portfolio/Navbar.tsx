@@ -32,7 +32,7 @@ export function Navbar({ darkMode, setDarkMode, scrollToSection }: NavbarProps) 
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
               <a href="#" className="cursor-pointer">
                 <NextImage
-                  src="/logo-sultan.svg" 
+                  src="/logo/logo-sultan.svg" 
                   alt="Sultan Logo"
                   width={30}
                   height={30}

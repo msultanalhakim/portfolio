@@ -10,7 +10,7 @@ import { projects } from "./data"
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="py-32 px-6">
+    <section id="projects" className="pt-32 pb-20 px-6">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -19,7 +19,7 @@ export function ProjectsSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <h2 className="text-5xl lg:text-7xl font-black mb-6 bg-gradient-to-r from-rose-400 via-pink-500 to-rose-500 bg-clip-text text-transparent">
+          <h2 className="text-5xl lg:text-7xl font-black mb-6 bg-gradient-to-r from-rose-400 via-pink-500 to-rose-500 bg-clip-text text-transparent pb-4">
             Featured Projects
           </h2>
           <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
@@ -39,7 +39,7 @@ export function ProjectsSection() {
             >
               <div className="relative h-64 overflow-hidden">
                 <Image
-                  src={project.image || "/placeholder.svg"}
+                  src={project.image || "/content-not-available.jpg"}
                   alt={project.title}
                   width={600}
                   height={400}

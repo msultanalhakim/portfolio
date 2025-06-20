@@ -5,6 +5,25 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Mail, Github, Linkedin } from "lucide-react"
 
+// Anda bisa meletakkan ini di dalam komponen Kontak atau Footer Anda
+const socialLinks = [
+  { 
+    label: 'GitHub',
+    href: 'https://github.com/msultanalhakim', // <-- Ganti dengan username GitHub Anda
+    icon: <Github size={28} /> 
+  },
+  { 
+    label: 'LinkedIn',
+    href: 'https://linkedin.com/in/msultanalhakim', // <-- Ganti dengan URL profil LinkedIn Anda
+    icon: <Linkedin size={28} /> 
+  },
+  { 
+    label: 'Email',
+    href: 'mailto:msultanalhakim@gmail.com', // <-- Ganti dengan alamat email Anda
+    icon: <Mail size={28} /> 
+  }
+];
+
 export function ContactSection() {
   return (
     <section id="contact" className="py-32 px-6">
@@ -16,26 +35,27 @@ export function ContactSection() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-5xl lg:text-7xl font-black mb-6 bg-gradient-to-r from-rose-400 via-pink-500 to-rose-500 bg-clip-text text-transparent">
-            Let's Create Something Amazing
+            Get In Touch
           </h2>
           <p className="text-xl text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Ready to transform your vision into reality? Let's collaborate and build the future together.
+            I am open to professional opportunities and collaborative partnerships. Please feel free to contact me to discuss a potential project or to explore how my skills can add value to your team.
           </p>
-
-          <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <Button className="bg-gradient-to-r from-rose-400 via-pink-500 to-rose-500 hover:from-rose-500 hover:via-pink-600 hover:to-rose-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-2xl shadow-rose-500/25 hover:shadow-rose-500/40 hover:scale-105 transition-all duration-300">
-              <Mail className="mr-2 h-5 w-5" />
-              Email Me
-            </Button>
-            <Button className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-2xl shadow-pink-500/25 hover:shadow-pink-500/40 hover:scale-105 transition-all duration-300">
-              <Linkedin className="mr-2 h-5 w-5" />
-              LinkedIn
-            </Button>
-            <Button className="bg-gradient-to-r from-slate-700 to-slate-900 hover:from-slate-800 hover:to-slate-950 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-2xl shadow-slate-500/25 hover:shadow-slate-500/40 hover:scale-105 transition-all duration-300">
-              <Github className="mr-2 h-5 w-5" />
-              GitHub
-            </Button>
+          {/* Bagian Link Sosial Media */}
+          <div className="flex items-center justify-center gap-6 md:gap-8">
+            {socialLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit my ${link.label} profile`}
+                className="text-slate-500 dark:text-slate-400 hover:text-rose-500 dark:hover:text-rose-400 transition-colors duration-300"
+              >
+                {link.icon}
+              </a>
+            ))}
           </div>
+        
         </motion.div>
       </div>
     </section>
