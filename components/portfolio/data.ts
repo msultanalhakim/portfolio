@@ -102,76 +102,77 @@ export type AchievementType = {
   ];
   
   export const achievements: AchievementType[] = [
-    { 
-      title: "Bronze Medal, ICT & Multimedia",
-      subtitle: "Indonesia Inventors Day", 
+    {
+      title: "Bronze Medal - ICT & Multimedia",
+      subtitle: "Indonesia Inventors Day",
       image: "/awards/iid.png",
-      description: "Awarded a bronze medal for innovation in the ICT & Multimedia category at an international-level event.", 
-      type: "award", 
-      year: "2024" 
+      description: "Earned a bronze medal for an innovative tech solution in the ICT & Multimedia category at an international-level competition.",
+      type: "award",
+      year: "2024",
     },
-    { 
-      title: "Best Project",
-      subtitle: "Laboratorium Informatika UNSOED", 
+    {
+      title: "Best Innovation Project",
+      subtitle: "Laboratorium Informatika UNSOED",
       image: "/awards/bestproject.jpg",
-      description: "Achieved first place in the national web design competition, demonstrating superior design and technical skills.", 
-      type: "award", 
-      year: "2021" 
+      description: "Recognized for developing the most outstanding project during the campus web innovation showcase.",
+      type: "award",
+      year: "2021",
     },
-    { 
-      title: "Bronze Medal, ICT & Multimedia",
-      subtitle: "Electro Invention Race", 
+    {
+      title: "1st Place - Web Design",
+      subtitle: "Electro Invention Race",
       image: "/awards/eir.jpg",
-      description: "Achieved first place in the national web design competition, demonstrating superior design and technical skills.", 
-      type: "award", 
-      year: "2021" 
+      description: "Received a bronze medal for multimedia-based project innovation at a national technology competition.",
+      type: "award",
+      year: "2021",
     },
-    { 
-        title: "2nd Place, Web Technologies",
-        subtitle: "Lomba Keterampilan Siswa", 
-        image: "/awards/webtechnologies.jpg", 
-        description: "Achieved second place in the national web technologies competition, demonstrating superior technologies and technical skills.", 
-        type: "award", 
-        year: "2019"
-      },
-    { 
-      title: "2nd Place, Fast Typing",
-      subtitle: "Olimpiade TIK Nasional", 
-      image: "/awards/fasttyping.jpg", 
-      description: "Secured second place in a national fast-typing competition, showcasing exceptional speed and accuracy.",
-      type: "award", 
-      year: "2020" 
+    {
+      title: "2nd Place - Web Technologies",
+      subtitle: "Lomba Keterampilan Siswa",
+      image: "/awards/webtechnologies.jpg",
+      description: "Secured second place at the city-level vocational competition in the web technology category.",
+      type: "award",
+      year: "2019",
     },
-    { 
-      title: "Best Project",
-      subtitle: "Lomba Keterampilan Siswa", 
-      image: "/awards/webtechnologies.jpg", 
-      description: "Achieved second place in the national web technologies competition, demonstrating superior technologies and technical skills.", 
-      type: "award", 
-      year: "2019"
+    {
+      title: "2nd Place - Fast Typing",
+      subtitle: "Olimpiade TIK Nasional",
+      image: "/awards/fasttyping.jpg",
+      description: "Won second place in a national typing competition by demonstrating exceptional typing speed and accuracy.",
+      type: "award",
+      year: "2020",
     },
-    { 
-      title: "Character Building",
-      subtitle: "Djarum Beasiswa Plus", 
+    {
+      title: "Best Web Project",
+      subtitle: "Lomba Keterampilan Siswa",
+      image: "/awards/webtechnologies.jpg",
+      description: "Recognized for delivering the best final project in the web technology competition category.",
+      type: "award",
+      year: "2019",
+    },
+    {
+      title: "Character Building Program",
+      subtitle: "Djarum Beasiswa Plus",
       image: "/awards/cb.jpg",
-      description: "",
+      description: "Completed personal development and ethics training to strengthen integrity, responsibility, and collaboration in professional settings.",
       type: "certification",
-      year: "2025" 
+      year: "2025",
     },
-    { 
-      title: "Leadership Development",
-      subtitle: "Djarum Beasiswa Plus", 
+    {
+      title: "Leadership Development Program",
+      subtitle: "Djarum Beasiswa Plus",
       image: "/awards/ld.jpg",
-      description: "",
+      description: "Trained in strategic leadership, decision-making, and team coordination through experiential learning programs.",
       type: "certification",
-      year: "2025" 
+      year: "2025",
     },
-    { 
-      title: "Cyber Security Training",
-      subtitle: "Mastercard", 
-      image: "/awards/comptia.jpg", 
-      description: "Comptia Security + and Cybersecurity Analyst (CYSA+)",
+    {
+      title: "Cybersecurity Fundamentals Training",
+      subtitle: "Mastercard",
+      image: "/awards/comptia.jpg",
+      description: "Completed cybersecurity training covering CompTIA Security+ and CYSA+ fundamentals, focusing on threat detection and risk mitigation.",
       type: "certification",
-      year: "2020" 
+      year: "2020",
     },
   ];
+  
