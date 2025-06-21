@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { useState, useMemo } from "react"
 import { Button } from "@/components/ui/button"
 import { Code2, Settings2, BrainCircuit, Brain, BarChart } from "lucide-react"
+import { AnimatePresence } from "framer-motion"
 
 export const skillCategories = [
   {
@@ -51,9 +52,6 @@ export const optimizedSkills = [
   { name: "Matplotlib", category: "Visualization", icon: "📈", description: "Basic plotting for data exploration" },
   { name: "Seaborn", category: "Visualization", icon: "🌊", description: "Statistical plotting built on Matplotlib" }
 ];
-
-
-
 
 export function SkillsSection() {
   const [selectedCategory, setSelectedCategory] = useState("All")
@@ -120,46 +118,42 @@ export function SkillsSection() {
           </div>
         </motion.div>
 
-        {/* Optimized Skills Grid */}
-        <motion.div layout className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {filteredSkills.map((skill, index) => (
-            <motion.div
-              key={skill.name}
-              layout
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05, duration: 0.4 }}
-              whileHover={{ scale: 1.02, y: -4 }}
-              className="group relative bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-6 border border-rose-200/30 dark:border-rose-700/30 shadow-xl hover:shadow-2xl hover:shadow-rose-500/20 transition-all duration-300 cursor-pointer overflow-hidden will-change-transform"
-            >
-              {/* Optimized background gradient */}
-              <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-rose-400/40 dark:group-hover:border-rose-500/60 transition-colors duration-300 pointer-events-none" />
-
-              {/* Skill Content */}
-              <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="text-3xl group-hover:scale-110 transition-transform duration-200 will-change-transform">
-                    {skill.icon}
+        {/* Optimized Skills Grid with Fade Animation */}
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={selectedCategory} // penting agar rerender saat kategori berubah
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+          >
+            {filteredSkills.map((skill) => (
+              <div
+                key={skill.name}
+                className="group relative bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-6 border border-rose-200/30 dark:border-rose-700/30 shadow-xl hover:shadow-2xl hover:shadow-rose-500/20 transition-all duration-300 cursor-pointer overflow-hidden"
+              >
+                <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-rose-400/40 dark:group-hover:border-rose-500/60 transition-colors duration-300 pointer-events-none" />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="text-3xl group-hover:scale-110 transition-transform duration-200 will-change-transform">
+                      {skill.icon}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-lg text-slate-800 dark:text-slate-100 group-hover:text-rose-600 dark:group-hover:text-white transition-colors duration-200 break-words">
+                        {skill.name}
+                      </h3>
+                      <p className="text-sm text-rose-500 dark:text-rose-400 font-medium">{skill.category}</p>
+                    </div>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-lg text-slate-800 dark:text-slate-100 group-hover:text-rose-600 dark:group-hover:text-white transition-colors duration-200 break-words">
-                      {skill.name}
-                    </h3>
-                    <p className="text-sm text-rose-500 dark:text-rose-400 font-medium">{skill.category}</p>
-                  </div>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-800 dark:group-hover:text-slate-200 leading-relaxed transition-colors duration-200 break-words">
+                    {skill.description}
+                  </p>
                 </div>
-
-                <p className="text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-800 dark:group-hover:text-slate-200 leading-relaxed transition-colors duration-200 break-words">
-                  {skill.description}
-                </p>
               </div>
-
-              {/* Optimized hover border effect */}
-              <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-rose-400/30 transition-colors duration-300 pointer-events-none" />
-            </motion.div>
-          ))}
-        </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   )

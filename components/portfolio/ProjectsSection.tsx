@@ -35,7 +35,8 @@ export function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2, duration: 0.8 }}
-              className="group relative bg-white/70 dark:bg-slate-800/70 backdrop-blur-xl rounded-3xl overflow-hidden border border-white/30 dark:border-slate-700/30 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:scale-[1.02]"
+              // PERUBAHAN: Mengurangi intensitas blur dan shadow
+              className="group relative bg-white/80 dark:bg-slate-800/80 backdrop-blur-lg rounded-3xl overflow-hidden border border-white/30 dark:border-slate-700/30 shadow-lg hover:shadow-xl transition-all duration-700 hover:scale-[1.02]"
             >
               <div className="relative h-64 overflow-hidden">
                 <Image
@@ -43,6 +44,8 @@ export function ProjectsSection() {
                   alt={project.title}
                   width={600}
                   height={400}
+                  // PERUBAHAN: Menambahkan 'sizes'
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   loading="lazy"
                 />

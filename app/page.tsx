@@ -1,10 +1,10 @@
-// app/page.tsx
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useDarkMode } from "@/hooks/useDarkMode"
+import { PageLoader } from "@/components/ui/loaders" // ← pastikan path benar
 
-// Import semua komponen section
+// Import semua komponen utama
 import { Navbar } from "@/components/portfolio/Navbar"
 import { HeroSection } from "@/components/portfolio/HeroSection"
 import { ExperienceSection } from "@/components/portfolio/ExperienceSection"
@@ -18,19 +18,31 @@ import { ScrollToTop } from "@/components/portfolio/ScrollToTop"
 import type { AchievementType } from "@/components/portfolio/data"
 
 export default function PortfolioPage() {
-  const [darkMode, setDarkMode] = useDarkMode(true)
+  const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches
+  const [darkMode, setDarkMode] = useDarkMode(prefersDark)
   const [selectedAchievement, setSelectedAchievement] = useState<AchievementType | null>(null)
 
+  // Global page loader
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    // Simulasikan loading awal (misal: fetching data / preparing)
+    const timeout = setTimeout(() => setLoading(false), 1800) // bisa disesuaikan
+    return () => clearTimeout(timeout)
+  }, [])
+
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+    const el = document.getElementById(sectionId)
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" })
     }
   }
 
+  // Tampilkan loader dulu sebelum seluruh konten ditampilkan
+  if (loading) return <PageLoader />
+
   return (
     <div className={`min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-500`}>
-      {/* Background Gradient */}
       <div className="fixed inset-0 bg-gradient-to-br from-slate-50 via-rose-50/30 to-pink-50/50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800 transition-all duration-1000 -z-10" />
 
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} scrollToSection={scrollToSection} />
@@ -46,7 +58,6 @@ export default function PortfolioPage() {
 
       <Footer />
       <ScrollToTop />
-
       <AchievementModal achievement={selectedAchievement} onClose={() => setSelectedAchievement(null)} />
     </div>
   )

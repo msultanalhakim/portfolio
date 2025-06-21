@@ -30,18 +30,22 @@ export function Navbar({ darkMode, setDarkMode, scrollToSection }: NavbarProps) 
         <div className="flex justify-between items-center">
           <div className="py-4">
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
-              <a href="#" className="cursor-pointer">
-                <NextImage
-                  src="/logo/logo-sultan.svg" 
-                  alt="Sultan Logo"
-                  width={30}
-                  height={30}
-                  priority={true} 
-                  onContextMenu={(e) => e.preventDefault()}
-                  draggable="false"
-                  className="select-none"
-                />
-              </a>
+            <button
+              onClick={() => scrollToSection("about")}
+              className="cursor-pointer"
+            >
+              <NextImage
+                src="/logo/logo-sultan.svg"
+                alt="Sultan Logo"
+                width={30}
+                height={30}
+                priority
+                onContextMenu={(e) => e.preventDefault()}
+                draggable="false"
+                className="select-none"
+              />
+            </button>
+
             </motion.div>
           </div>
 
