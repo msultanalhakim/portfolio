@@ -32,6 +32,8 @@ export const skillCategories = [
 export const optimizedSkills = [
   // Programming Languages
   { name: "Python", category: "Programming", icon: "🐍", description: "Primary language for data science and machine learning" },
+  { name: "JavaScript", category: "Programming", icon: "🌐", description: "Web development and scripting" },
+  { name: "C++", category: "Programming", icon: "💻", description: "Performance-oriented programming for systems and algorithms" },
   { name: "R", category: "Programming", icon: "📊", description: "Statistical computing and data visualization" },
   { name: "SQL", category: "Programming", icon: "🗃️", description: "Structured data querying and manipulation" },
 
@@ -48,10 +50,11 @@ export const optimizedSkills = [
   { name: "Keras", category: "DL Framework", icon: "🧠", description: "High-level neural network API" },
   { name: "PyTorch", category: "DL Framework", icon: "🔥", description: "Dynamic and flexible deep learning library" },
 
-  // Visualization (optional but helpful)
+  // Visualization
   { name: "Matplotlib", category: "Visualization", icon: "📈", description: "Basic plotting for data exploration" },
   { name: "Seaborn", category: "Visualization", icon: "🌊", description: "Statistical plotting built on Matplotlib" }
 ];
+
 
 export function SkillsSection() {
   const [selectedCategory, setSelectedCategory] = useState("All")

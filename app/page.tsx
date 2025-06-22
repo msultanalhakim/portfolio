@@ -2,9 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { useDarkMode } from "@/hooks/useDarkMode"
-import { PageLoader } from "@/components/ui/loaders" // ← pastikan path benar
+import { PageLoader } from "@/components/ui/loaders"
 
-// Import semua komponen utama
 import { Navbar } from "@/components/portfolio/Navbar"
 import { HeroSection } from "@/components/portfolio/HeroSection"
 import { ExperienceSection } from "@/components/portfolio/ExperienceSection"
@@ -18,27 +17,26 @@ import { ScrollToTop } from "@/components/portfolio/ScrollToTop"
 import type { AchievementType } from "@/components/portfolio/data"
 
 export default function PortfolioPage() {
-  const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches
-  const [darkMode, setDarkMode] = useDarkMode(prefersDark)
+  const [darkMode, setDarkMode] = useDarkMode(false)
   const [selectedAchievement, setSelectedAchievement] = useState<AchievementType | null>(null)
 
-  // Global page loader
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Simulasikan loading awal (misal: fetching data / preparing)
-    const timeout = setTimeout(() => setLoading(false), 1800) // bisa disesuaikan
+    const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches
+    setDarkMode(prefersDark)
+  }, [setDarkMode])
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setLoading(false), 1800)
     return () => clearTimeout(timeout)
   }, [])
 
   const scrollToSection = (sectionId: string) => {
     const el = document.getElementById(sectionId)
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" })
-    }
+    if (el) el.scrollIntoView({ behavior: "smooth" })
   }
 
-  // Tampilkan loader dulu sebelum seluruh konten ditampilkan
   if (loading) return <PageLoader />
 
   return (
