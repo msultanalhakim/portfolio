@@ -90,7 +90,7 @@ export function HeroSection({ scrollToSection }: HeroSectionProps) {
               className="bg-gradient-to-r from-rose-400 via-pink-500 to-rose-500 hover:from-rose-500 hover:via-pink-600 hover:to-rose-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-2xl shadow-rose-500/25 hover:shadow-rose-500/40 hover:scale-105 transition-all duration-300"
             >
               <a
-                href="#"
+                href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
               >
