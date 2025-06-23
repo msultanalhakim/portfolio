@@ -145,7 +145,7 @@ export type AchievementType = {
     {
       title: "3rd Place - Web Design",
       subtitle: "Lomba Keterampilan Siswa",
-      image: "/awards/webtechnologies.jpg",
+      image: "/awards/webdesign.jpg",
       description: "Earned third place for excellence in final project delivery in the web technology category.",
       type: "award",
       year: "2018",
