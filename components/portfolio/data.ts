@@ -111,7 +111,7 @@ export type AchievementType = {
       year: "2024",
     },
     {
-      title: "Best Innovation Project",
+      title: "Best Project II",
       subtitle: "Laboratorium Informatika UNSOED",
       image: "/awards/bestproject.jpg",
       description: "Recognized for delivering the most outstanding project at a university-level web innovation showcase.",
