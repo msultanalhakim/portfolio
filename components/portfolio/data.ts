@@ -86,7 +86,7 @@ export type AchievementType = {
       image: "/projects/matrix-calculator.png", 
       technologies: ["Next.js", "Tailwind", "TypeScript"], 
       github: "https://github.com/msultanalhakim/matrix-operation.git", 
-      live: "https://matrix-operation-ekn9.vercel.app/", 
+      live: "https://matrix-operation.vercel.app/", 
       featured: false
     },
     { 
